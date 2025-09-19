@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apps Script Form POST Tester</title></head>
+<body>
+  <!-- Hidden sink avoids CORS and keeps page on same origin -->
+  <iframe name="appsScriptSink" style="display:none;"></iframe>
+
+  <h3>Send a test match (form POST, no CORS)</h3>
+
+  <form id="f" action="https://script.google.com/macros/s/AKfycbxvO53QppyoFWfdNiVmvyVLtcv4NSGp5CtLhIH9lzJ4K2f_56zmfmm-f22SBMG8PSH7/exec"
+        method="POST" target="appsScriptSink">
+    <input type="hidden" name="mode" value="saveMatch">
+    <input type="hidden" name="MatchID" value="">
+    <input type="hidden" name="ChampionshipID" value="STAGE_A">
+    <input type="hidden" name="Round" value="R32">
+    <input type="hidden" name="MatchNo" value="1">
+    <input type="hidden" name="Date" value="">
+    <input type="hidden" name="HomePlayerID" value="P001">
+    <input type="hidden" name="AwayPlayerID" value="P002">
+    <input type="hidden" name="PlayerAID" value="P001">
+    <input type="hidden" name="PlayerBID" value="P002">
+    <input type="hidden" name="Venue" value="Home">
+    <input type="hidden" name="VenueName" value="Center Court">
+    <input type="hidden" name="CourtID" value="C001">
+    <input type="hidden" name="ScoreString" value="3-1, 4-3">
+    <input type="hidden" name="SetsWonA" value="2">
+    <input type="hidden" name="SetsWonB" value="0">
+    <input type="hidden" name="GamesWonA" value="7">
+    <input type="hidden" name="GamesWonB" value="4">
+    <input type="hidden" name="TieBreakPointsWonA" value="5">
+    <input type="hidden" name="TieBreakPointsWonB" value="3">
+    <input type="hidden" name="PointsWonA" value="60">
+    <input type="hidden" name="PointsWonB" value="55">
+    <input type="hidden" name="UnforcedErrorsA" value="8">
+    <input type="hidden" name="UnforcedErrorsB" value="11">
+    <input type="hidden" name="FastestServeKphA" value="192">
+    <input type="hidden" name="FastestServeKphB" value="187">
+    <input type="hidden" name="WinnerID" value="P001">
+    <input type="hidden" name="DurationMinutes" value="48">
+    <input type="hidden" name="Decision" value="Normal">
+    <input type="hidden" name="Notes" value="Form test">
+    <button type="submit">Send test POST</button>
+  </form>
+
+  <p id="msg" style="font-family:system-ui"></p>
+
+<script>
+  // Fill dynamic values just before submit (no CORS, still no fetch)
+  const form = document.getElementById('f');
+  form.addEventListener('submit', () => {
+    form.MatchID.value = 'TEST-' + Date.now();
+    form.Date.value = new Date().toISOString().slice(0,10);
+    document.getElementById('msg').textContent = 'Sent! Check the Matches sheet for ' + form.MatchID.value;
+    // You can manually refresh your Matches CSV page after a few seconds to see it appear.
+  });
+</script>
+<div id="nav"></div>
+<script type="module" src="./js/nav.js"></script>
+</body>
+</html>
