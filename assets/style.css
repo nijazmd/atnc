@@ -238,3 +238,13 @@
 .win{color:var(--ok);font-weight:800}
 .result{margin-left:.5rem}
 .ver {font-size: 12px; opacity: .5; text-align: center;}
+/* Home highlight for brackets */
+.teamA.home, .teamB.home{
+  background: rgba(110,231,255,0.12);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0 .35rem;
+}
+.homeIcon{ opacity:.9; margin-left:.25rem; }
+.win{ color: var(--ok); font-weight:700; }
+.info {width: 100%;}

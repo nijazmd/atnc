@@ -2,6 +2,19 @@ import { SHEETS, ROUND } from './constants.js';
 import { loadAll } from './loader.js';
 import { $, getParam } from './utils.js';
 
+// Who has home? Prefer Matches.HomePlayerID; fall back to Brackets AdminOverrideHome/HomeAssignedTo
+function homeSide(b, m){
+  if (m?.HomePlayerID){
+    if (m.HomePlayerID === b.PlayerAID) return 'A';
+    if (m.HomePlayerID === b.PlayerBID) return 'B';
+  }
+  const ov  = (b.AdminOverrideHome||'').trim().toUpperCase();
+  if (ov === 'A' || ov === 'B') return ov;
+  const asn = (b.HomeAssignedTo||'').trim().toUpperCase();
+  if (asn === 'A' || asn === 'B') return asn;
+  return '';
+}
+
 const roundOrder=[ROUND.R32,ROUND.R16,ROUND.QF,ROUND.SF,ROUND.F];
 
 function chooseDefaultChamp(champs){
@@ -50,17 +63,22 @@ function chooseDefaultChamp(champs){
       const href  = m?.MatchID
         ? `match.html?id=${encodeURIComponent(m.MatchID)}`
         : `match.html?cid=${encodeURIComponent(cid)}&round=${r}&no=${b.MatchNo}`;
+        const hs   = homeSide(b, m);
+        const clsA = `${m?.WinnerID===b.PlayerAID?'win':''} ${hs==='A'?'home':''}`.trim();
+        const clsB = `${m?.WinnerID===b.PlayerBID?'win':''} ${hs==='B'?'home':''}`.trim();
+        
         return `<a class="link" href="${href}">
-        <div class="stat">
-          <div class="info">
-            <div class="matchno">#${b.MatchNo}</div>
-            <div class="teamA ${m?.WinnerID===b.PlayerAID?'win':''}">${a}</div>
-            <div class="vs">vs.</div>
-            <div class="teamB ${m?.WinnerID===b.PlayerBID?'win':''}">${x}</div>
+          <div class="stat">
+            <div class="info">
+              <div class="matchno">#${b.MatchNo}</div>
+              <div class="teamA ${clsA}">${a}${hs==='A'?' <span class="homeIcon"></span>':''}</div>
+              <div class="vs">vs.</div>
+              <div class="teamB ${clsB}">${x}${hs==='B'?' <span class="homeIcon"></span>':''}</div>
+            </div>
+            <div class="result">${m?.ScoreString? `<span class="pill">${m.ScoreString}</span>` : '→'}</div>
           </div>
-          <div class="result">${m?.ScoreString? `<span class="pill">${m.ScoreString}</span>` : '→'}</div>
-        </div>
-      </a>`;
+        </a>`;
+        
       
     }).join('');
     return `<section class="card"><h3>${r}</h3>${rows}</section>`;
