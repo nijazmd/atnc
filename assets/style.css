@@ -50,6 +50,7 @@
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 50px;
   }
   
   /* LINKS */
@@ -230,4 +231,10 @@
     .container{padding: 28px}
     .navbar a .icon{font-size:1.4rem}
   }
-  
+  .stat .info{display:flex;align-items:center;gap:.5rem}
+.matchno{min-width:32px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:.15rem .35rem;background:#0f1324;color:var(--muted);font-size:.8rem}
+.teamA,.teamB{flex:1}
+.vs{color:var(--muted);font-size:.85rem}
+.win{color:var(--ok);font-weight:800}
+.result{margin-left:.5rem}
+.ver {font-size: 12px; opacity: .5; text-align: center;}

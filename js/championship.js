@@ -50,9 +50,18 @@ function chooseDefaultChamp(champs){
       const href  = m?.MatchID
         ? `match.html?id=${encodeURIComponent(m.MatchID)}`
         : `match.html?cid=${encodeURIComponent(cid)}&round=${r}&no=${b.MatchNo}`;
-      return `<a class="link" href="${href}">
-        <div class="stat"><span>#${b.MatchNo} ${a} vs ${x}</span><b>${score||'→'}</b></div>
+        return `<a class="link" href="${href}">
+        <div class="stat">
+          <div class="info">
+            <div class="matchno">#${b.MatchNo}</div>
+            <div class="teamA ${m?.WinnerID===b.PlayerAID?'win':''}">${a}</div>
+            <div class="vs">vs.</div>
+            <div class="teamB ${m?.WinnerID===b.PlayerBID?'win':''}">${x}</div>
+          </div>
+          <div class="result">${m?.ScoreString? `<span class="pill">${m.ScoreString}</span>` : '→'}</div>
+        </div>
       </a>`;
+      
     }).join('');
     return `<section class="card"><h3>${r}</h3>${rows}</section>`;
   }).join('');
