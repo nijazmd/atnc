@@ -1,0 +1,547 @@
+
+/* GENERAL RESET AND MOBILE OPTIMIZATION */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0f172a; /* deep indigo */
+  color: #f1f5f9;
+  font-size: 15px;
+  padding-bottom: 70px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+  color: #e2e8f0;
+}
+
+label, select {
+  display: block;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+/* TABLES */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid #334155;
+}
+
+th {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+td {
+  color: #f8fafc;
+}
+
+a.team-link {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+/* STAT CARDS */
+.stat-card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  flex: 1 1 45%;
+  max-width: 48%;
+}
+
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 0.3rem;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+/* PLAYER SECTIONS */
+.split-box {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.recent-game {
+  background: #1e293b;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 10px;
+  color: #f8fafc;
+}
+
+/* GAME SUMMARY TAGS */
+.game-summary {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.game-tag {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+  background: #334155;
+}
+
+.game-tag.W {
+  background-color: #22c55e;
+}
+
+.game-tag.WE {
+  background-color: #4ade80;
+}
+
+.game-tag.L {
+  background-color: #ef4444;
+}
+
+.extra-time {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* NAVIGATION */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0f172a;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.6rem 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+}
+
+.nav-icon {
+  color: #f8fafc;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* PLAYER NAME + TEAM INFO */
+.player-name, .team-name, .player-position {
+  font-size: 20px;
+  font-weight: bold;
+  color: #e2e8f0;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* SPLIT HOME-AWAY LAYOUT */
+.split-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-away-box {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* VERSION */
+.version {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* SCROLLBAR HIDE BUT SCROLL ENABLE */
+.table-container::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.recent-games-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 0 10px 60px;
+}
+
+.recent-game-card {
+  background: #1e1e2f;
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.result-tag {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 6px;
+}
+
+.result-tag.win {
+  color: #4caf50;
+}
+.result-tag.we {
+  color: #4caf50;
+}
+.result-tag.loss {
+  color: #f44336;
+}
+
+.extra-time {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.game-line {
+  margin: 4px 0;
+}
+
+.game-link a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+#totalStats, #avgStats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: space-between;
+}
+
+.team-radio-group label {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  user-select: none;
+}
+
+/* Hide native radio input */
+.team-radio-group input[type="radio"] {
+  display: none;
+}
+
+/* Highlight selected */
+.team-radio-group input[type="radio"]:checked + span {
+  border-color: #fff;
+  box-shadow: 0 0 5px #fff;
+}
+
+form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  color: #eee;
+}
+
+form h3 {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #ccc;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #1e1e1e;
+  color: #fff;
+  margin-top: 4px;
+}
+
+#teamPlayers > div,
+#opponentPlayers > div {
+  border: 1px solid #333;
+  background: #181818;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+#otherTeamContainer {
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  /* margin-top: 1rem; */
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Modern radio buttons styled as pills */
+input[type="radio"] {
+  display: none;
+}
+
+label.radio-group {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+label.radio-group span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #2d2d2d;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked + span {
+  background: #4f46e5;
+  color: white;
+}
+
+#teamPlayers, #opponentPlayers {
+  padding: 10px 0;
+}
+
+.totalDisplay {
+  position: fixed;
+  bottom: 28px;
+  left: 0;
+  width: 100%;
+  background: #181818;
+  padding: 0 20px 20px;
+}
+.splitTwo {
+  display: flex;
+}
+.splitTwo label {
+  width: 50%;
+  padding: 0 10px 0 0;
+  margin-bottom: 0;
+}
+
+.input-group {
+  margin: 6px 0;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.counter input[type="number"] {
+  width: 50px;
+  text-align: center;
+}
+
+.counter button {
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+}
+
+.counter button:hover {
+  background-color: #666;
+}
+
+.dual-input-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.input-group {
+  flex: 1;
+}
+
+:root {
+  /* Adjust if your bottom nav height differs */
+  --bottom-nav-height: 56px;
+  --sticky-cta-padding: 14px;
+  --sticky-cta-z: 999;
+}
+
+/* Make room at the bottom for the sticky footer + nav */
+form {
+  padding-bottom: calc(var(--bottom-nav-height) + 170px); /* safe space for inputs + button */
+}
+
+/* Sticky footer container */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  padding: var(--sticky-cta-padding);
+  background: rgba(20, 22, 30, 0.92);          /* dark translucent */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -8px 16px rgba(0,0,0,0.35);
+  z-index: var(--sticky-cta-z);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Layout inside sticky area */
+.sticky-cta .totalDisplay {
+  display: grid;
+  gap: 12px;
+}
+
+.sticky-cta .splitTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sticky-cta .counter {
+  display: grid;
+  grid-template-columns: auto 36px 1fr 36px;
+  align-items: center;
+  gap: 6px;
+}
+
+.sticky-cta .counter label {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: -2px;
+}
+
+.sticky-cta input[type="number"] {
+  width: 100%;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 0 10px;
+}
+
+.sticky-cta button[type="button"] {
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.sticky-cta button[type="submit"] {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #27c56b;      /* success green */
+  color: #0b0f12;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Keep bottom nav using the same variable for consistency */
+.bottom-nav {
+  height: var(--bottom-nav-height);
+}
+
+
+
+/* Add team-specific colors (you can customize this list) */
+label[for="team_BIS"] { background-color: #2463ac; }
+label[for="team_BOS"] { background-color: #23ddf5; }
+label[for="team_CAR"] { background-color: #881f2b; }
+label[for="team_FRE"] { background-color: #cdbf1e; color: #000; }
+label[for="team_GRE"] { background-color: #417505; }
+label[for="team_HST"] { background-color: #d67022; }
+label[for="team_OTT"] { background-color: #efe441; }
+label[for="team_PNX"] { background-color: #2a0c4a; }
+label[for="team_ZDG"] { background-color: #63cc3d; }
+/* Add more teams as needed */
